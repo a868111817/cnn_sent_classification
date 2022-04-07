@@ -39,3 +39,10 @@ Result
 | CNN-rand       | 72.75 |
 | CNN-static     | 83.47 |
 | CNN-non-static | 83.74 |
+
+refernce:
+[harvardnlp/sent-conv-torch](https://github.com/harvardnlp/sent-conv-torch)
+
+[A Complete Guide to CNN for Sentence Classification with PyTorch](https://chriskhanhtran.github.io/posts/cnn-sentence-classification/)
+
+[Convolutional Neural Networks for Sentence Classification](https://arxiv.org/pdf/1408.5882.pdf)
