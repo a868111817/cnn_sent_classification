@@ -40,6 +40,7 @@ Result
 | CNN-non-static | 83.74 |
 
 refernce:
+
 [harvardnlp/sent-conv-torch](https://github.com/harvardnlp/sent-conv-torch)
 
 [A Complete Guide to CNN for Sentence Classification with PyTorch](https://chriskhanhtran.github.io/posts/cnn-sentence-classification/)
