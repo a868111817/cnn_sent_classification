@@ -4,8 +4,12 @@ import torch
 import torch.nn as nn
 from sklearn.model_selection import train_test_split
 import train
+import argparse
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model", help="Choose different CNN model",type=str,default='CNN-rand')
+
     # Load files
     neg_text = utils.load_text('data/rt-polaritydata/rt-polarity.neg')
     pos_text = utils.load_text('data/rt-polaritydata/rt-polarity.pos')
@@ -44,14 +48,37 @@ def main():
     filter_sizes = [2, 3, 4]
     num_filters = [2, 2, 2]
 
-    # CNN-rand: Word vectors are randomly initialized.
-    utils.set_seed(42)
-    cnn_rand, optimizer = utils.initilize_model(vocab_size=len(word2idx),
+    args = parser.parse_args()
+    if args.model == 'CNN-rand':
+        # CNN-rand: Word vectors are randomly initialized.
+        utils.set_seed(42)
+        cnn_rand, optimizer = utils.initilize_model(vocab_size=len(word2idx),
                                       embed_dim=300,
                                       learning_rate=0.25,
                                       dropout=0.5,
                                       device = device)
-    train.train(cnn_rand, optimizer, train_dataloader, val_dataloader, epochs=20)
+        train.train(cnn_rand, optimizer, train_dataloader, val_dataloader, epochs=20)
+
+    elif args.model == 'CNN-static':
+        # CNN-static: fastText pretrained word vectors are used and freezed during training.
+        utils.set_seed(42)
+        cnn_static, optimizer = utils.initilize_model(pretrained_embedding=embeddings,
+                                        freeze_embedding=True,
+                                        learning_rate=0.25,
+                                        dropout=0.5,
+                                        device = device)
+        train.train(cnn_static, optimizer, train_dataloader, val_dataloader, epochs=20)
+
+    elif args.model == 'CNN-non-static':
+        # CNN-non-static: fastText pretrained word vectors are fine-tuned during training.
+        utils.set_seed(42)
+        cnn_non_static, optimizer = utils.initilize_model(pretrained_embedding=embeddings,
+                                            freeze_embedding=False,
+                                            learning_rate=0.25,
+                                            dropout=0.5,
+                                            device = device)
+        train.train(cnn_non_static, optimizer, train_dataloader, val_dataloader, epochs=20)
+
 
 if __name__ == '__main__':
     main()
