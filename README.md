@@ -28,7 +28,6 @@ python main.py --model CNN-rand
   * `CNN-rand` initializes the word embeddings randomly and learns them.
   * `CNN-static` initializes the word embeddings to word2vec and keeps the weight static.
   * `CNN-nonstatic` also initializes to word2vec, but allows them to be learned.
-  * 
 
 Result
 
