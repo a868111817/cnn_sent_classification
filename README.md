@@ -13,6 +13,7 @@ pipenv shell
 ```
 
 Download dataset : **Movie Review(MR)**
+and word vector :**fastText**
 
 ```
 sh script/MR_download.sh
