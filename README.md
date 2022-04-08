@@ -19,7 +19,7 @@ and word vector :**fastText**
 sh script/MR_download.sh
 sh script/fasttext_download.sh
 ```
-model architecture
+Model architecture
 
 ![Screenshot from 2022-04-08 14-01-52](https://user-images.githubusercontent.com/49869328/162374222-6bb5a7be-4509-4767-b17c-294b20a8417f.png)
 
